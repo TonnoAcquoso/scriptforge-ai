@@ -176,21 +176,30 @@ intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0
 # CONFIG
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])  # Sostituisci con la tua vera API Key
 
-def genera_script_con_gpt(prompt):
-    with open("scriptforge_system_prompt.txt", "r") as f:
-        system_prompt = f.read()
+st.code(prompt, language="markdown") 
 
-    
+def genera_script_con_gpt(prompt):
+    try:
+        with open("scriptforge_system_prompt.txt", "r") as f:
+            system_prompt = f.read()
+    except FileNotFoundError:
+        system_prompt = "Sei uno sceneggiatore esperto in narrativa anime."
+
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "Sei uno sceneggiatore esperto in narrativa anime."},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": prompt}
         ],
         temperature=0.8,
         max_tokens=2048
     )
-    script = response.choices[0].message.content
+
+    if response.choices and response.choices[0].message.content:
+        return response.choices[0].message.content
+    else:
+        return "❌ Nessuna risposta generata da OpenAI."
+
 
 # === PROMPT ===
 def genera_prompt_script_lungo(nicchia, stile, intensita, tema):
@@ -231,7 +240,6 @@ if st.button("⚙️ Genera Prompt"):
 
     # Genera script direttamente con GPT
     script = genera_script_con_gpt(prompt)
+    st.text_area("Risultato finale:", script, height=600)
     
-    st.markdown("### Risultato finale:")
-    st.write(script)
 
