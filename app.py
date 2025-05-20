@@ -176,7 +176,6 @@ intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0
 # === PROMPT ===
 def genera_prompt_script_lungo(nicchia, stile, intensita, tema):
     return f"""Crea uno script lungo (1200–1500 parole) in stile narrativo riflessivo ed epico, basato su questo personaggio/anime/tema: “{tema}”
-
     Lo script deve essere creato sulla base delle scelte dell’utente e sarà quindi:
     – Scorrevole e coinvolgente, con uno stile da documentario emotivo o storytelling YouTube
     – Strutturato in forma narrativa fluida (no scalette), con transizioni psicologiche forti (es. “ed è qui che tutto cambia”)
