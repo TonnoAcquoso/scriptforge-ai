@@ -208,12 +208,17 @@ Queste sono le preferenze dell’utente:
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])  # Sostituisci con la tua vera API Key
 
 
-# === GPT SCRIPT GENERATION ===
 def genera_script_con_gpt(prompt):
+    try:
+        with open("scriptforge_system_prompt.txt", "r") as f:
+            system_prompt = f.read()
+    except FileNotFoundError:
+        system_prompt = "Sei uno sceneggiatore esperto in narrativa anime."
+
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "Sei uno sceneggiatore esperto in narrativa anime."},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": prompt}
         ],
         temperature=0.8,
@@ -223,7 +228,7 @@ def genera_script_con_gpt(prompt):
     if response.choices and response.choices[0].message.content:
         return response.choices[0].message.content
     else:
-        return "❌ Nessuna risposta generata."
+        return "❌ Nessuna risposta generata da OpenAI."
 
 
 # === GENERA ===
