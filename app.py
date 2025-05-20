@@ -207,7 +207,7 @@ Queste sono le preferenze dell’utente:
 # CONFIG
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])  # Sostituisci con la tua vera API Key
 
-
+prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
 st.code(prompt, language="markdown") 
 
 def genera_script_con_gpt(prompt):
