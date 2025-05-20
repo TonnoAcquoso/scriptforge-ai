@@ -173,34 +173,6 @@ stile = st.selectbox("Seleziona lo stile narrativo", stili, index=0)
 intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0)
 
 
-# CONFIG
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])  # Sostituisci con la tua vera API Key
-
-st.code(prompt, language="markdown") 
-
-def genera_script_con_gpt(prompt):
-    try:
-        with open("scriptforge_system_prompt.txt", "r") as f:
-            system_prompt = f.read()
-    except FileNotFoundError:
-        system_prompt = "Sei uno sceneggiatore esperto in narrativa anime."
-
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.8,
-        max_tokens=2048
-    )
-
-    if response.choices and response.choices[0].message.content:
-        return response.choices[0].message.content
-    else:
-        return "❌ Nessuna risposta generata da OpenAI."
-
-
 # === PROMPT ===
 def genera_prompt_script_lungo(nicchia, stile, intensita, tema):
     return f"""
@@ -231,6 +203,35 @@ Queste sono le preferenze dell’utente:
 – Stile narrativo scelto: {stile}
 – Intensità emotiva: {intensita}
 """
+
+# CONFIG
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])  # Sostituisci con la tua vera API Key
+
+prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
+st.code(prompt, language="markdown") 
+
+def genera_script_con_gpt(prompt):
+    try:
+        with open("scriptforge_system_prompt.txt", "r") as f:
+            system_prompt = f.read()
+    except FileNotFoundError:
+        system_prompt = "Sei uno sceneggiatore esperto in narrativa anime."
+
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.8,
+        max_tokens=2048
+    )
+
+    if response.choices and response.choices[0].message.content:
+        return response.choices[0].message.content
+    else:
+        return "❌ Nessuna risposta generata da OpenAI."
+
 
 # === GENERA ===
 if st.button("⚙️ Genera Prompt"):
