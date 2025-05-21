@@ -57,10 +57,9 @@ st.markdown(
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
         gap: 15px;
         margin-bottom: 20px;
-        text-align: center;
+        flex-wrap: wrap;
     }}
 
     .header-logo {{
@@ -77,8 +76,10 @@ st.markdown(
         font-weight: bold;
         color: white;
         font-family: 'Montserrat', sans-serif;
-        white-space: normal;
         text-align: center;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
     }}
 
     .section-title {{
@@ -87,6 +88,7 @@ st.markdown(
         margin-top: 1.5rem;
         color: white;
         font-family: 'Montserrat', sans-serif;
+        text-align: center;
     }}
 
     label, .stSelectbox label, .stTextInput label {{
@@ -143,25 +145,35 @@ st.markdown(
         font-style: italic !important;
     }}
 
-    /* === RESPONSIVE === */
     @media screen and (max-width: 480px) {{
         .header-title {{
             font-size: 20px;
+            padding: 0 10px;
         }}
+
         .block-container {{
             padding: 1rem;
         }}
+
         .section-title {{
             font-size: 1rem;
         }}
+
         label {{
             font-size: 14px;
+        }}
+
+        button[kind="secondary"] {{
+            display: block;
+            margin: 20px auto 10px auto;
+            width: 90%;
         }}
     }}
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 # === HEADER ===
 st.markdown(
