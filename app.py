@@ -150,35 +150,38 @@ st.markdown(
         opacity: 0.6 !important;
         font-style: italic !important;
     }}
+
+    /* Effetto fade-in */
     .fade-in {{
-    animation: fadeIn 0.5s ease-in-out;
+        animation: fadeIn 0.5s ease-in-out;
     }}
-        @keyframes fadeIn {{
-    from { opacity: 0; }
-            to { opacity: 1; }
-        }}
 
-        .intensity-row {{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}}
+    @keyframes fadeIn {{
+        from {{ opacity: 0; }}
+        to {{ opacity: 1; }}
+    }}
 
-        .help-icon {{
-    background-color: #555;
-    color: white;
-    border-radius: 50%;
-    padding: 3px 9px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
+    /* Riga con icona guida */
+    .intensity-row {{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }}
+
+    .help-icon {{
+        background-color: #555;
+        color: white;
+        border-radius: 50%;
+        padding: 3px 9px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
     }}
 
     .help-icon:hover {{
-    background-color: #777;
+        background-color: #777;
     }}
-
     </style>
     """,
     unsafe_allow_html=True
