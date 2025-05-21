@@ -241,6 +241,12 @@ if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità")
 if "mostra_guida" not in st.session_state:
     st.session_state["mostra_guida"] = False
 
+toggle_guida = st.button("?", key="help", help="Mostra/Nascondi guida", use_container_width=True)
+
+if toggle_guida:
+    st.session_state["mostra_guida"] = not st.session_state["mostra_guida"]
+
+
 if st.session_state["mostra_guida"]:
     st.markdown("---")
     st.markdown("<div class='section-title'>Guida ai parametri</div>", unsafe_allow_html=True)
