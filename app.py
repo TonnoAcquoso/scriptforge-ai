@@ -35,7 +35,7 @@ except Exception:
     
 # bg_image = Image.open("bg.jpg") Se vuoi lanciarlo in locale #
 buffered_bg = BytesIO()
-bg_image.save(buffered_bg, format="JPEG")
+bg_image.save(buffered_bg, format="jpeg")
 bg_base64 = base64.b64encode(buffered_bg.getvalue()).decode() 
 
 # === LOGO ===
@@ -81,7 +81,7 @@ st.markdown(
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
     text-align: center;
@@ -89,10 +89,11 @@ st.markdown(
 
     .header-logo {{
     width: 60px;
-    aspect-ratio: 1 / 1;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #888;
+    flex-shrink: 0;
     }}
 
     .header-title {{
@@ -212,7 +213,7 @@ st.markdown(
 # === HEADER ===
 st.markdown(
     f"""
-    <div class="header-container" style="flex-direction: row; gap: 15px;">
+    <div class="header-container">
         <img src="data:image/jpeg;base64,{logo_base64}" class="header-logo">
         <div class="header-title">ScriptForge AI – Generatore Script Narrativi</div>
     </div>
