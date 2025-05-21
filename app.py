@@ -199,7 +199,7 @@ with col2:
         st.session_state["mostra_guida_intensita"] = not st.session_state.get("mostra_guida_intensita", False)
 
 # Mostra guida se attiva
-ifif st.session_state.get("mostra_guida_intensita", False):
+if st.session_state.get("mostra_guida_intensita", False):
     st.markdown(
         """
         <div style="background-color: rgba(255,255,255,0.07); padding: 1rem 1.2rem; border-radius: 10px; color: white; font-size: 0.9rem; line-height: 1.6;">
