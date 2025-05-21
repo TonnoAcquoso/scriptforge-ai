@@ -244,3 +244,31 @@ if st.button("⚙️ Genera Prompt"):
             st.error("❌ Nessuna risposta ricevuta da OpenAI.")
     else:
         st.warning("⚠️ Completa tutti i campi prima di generare lo script.")
+        # === SEZIONE DOWNLOAD FORMATO ===
+        st.markdown("---")
+        st.markdown("**Scarica lo script:**")
+
+        formato = st.radio("Seleziona il formato di download", ["TXT", "DOCX"], horizontal=True)
+
+        if formato == "TXT":
+            st.download_button(
+                label="⬇️ Scarica .txt",
+                data=script,
+                file_name="script.txt",
+                mime="text/plain"
+            )
+        else:
+            from docx import Document  # assicurati che 'python-docx' sia in requirements.txt
+            doc = Document()
+            for line in script.split("\n"):
+                doc.add_paragraph(line)
+            buffer = BytesIO()
+            doc.save(buffer)
+            buffer.seek(0)
+            st.download_button(
+                label="⬇️ Scarica .docx",
+                data=buffer,
+                file_name="script.docx",
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            )
+
