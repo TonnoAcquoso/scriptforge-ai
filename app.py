@@ -5,8 +5,8 @@
 #    python -m streamlit run app.py
 # ---------------------------------------------------------
 
-# bg_url = "https://i.imgur.com/ujQBvFG.jpeg"
-# import requests # type: ignore
+bg_url = "https://i.imgur.com/ujQBvFG.jpeg"
+import requests # type: ignore
 import streamlit as st # type: ignore
 import openai  # type: ignore
 from openai import OpenAI  # type: ignore
@@ -19,12 +19,12 @@ from io import BytesIO
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
 
 # === SFONDO ===
-# response = requests.get(bg_url)
-# bg_image = Image.open(BytesIO(response.content))
-# bg_image = Image.open("bg.jpg") Se vuoi lanciarlo in locale
-# buffered_bg = BytesIO()
-# bg_image.save(buffered_bg, format="JPEG")
-# bg_base64 = base64.b64encode(buffered_bg.getvalue()).decode() 
+response = requests.get(bg_url)
+bg_image = Image.open(BytesIO(response.content))
+# bg_image = Image.open("bg.jpg") Se vuoi lanciarlo in locale #
+buffered_bg = BytesIO()
+bg_image.save(buffered_bg, format="JPEG")
+bg_base64 = base64.b64encode(buffered_bg.getvalue()).decode() 
 
 # === LOGO ===
 logo_image = Image.open("banner_martello.jpg")
@@ -153,7 +153,8 @@ st.markdown(
 
     /* Effetto fade-in */
     .fade-in {{
-        animation: fadeIn 0.5s ease-in-out;}}
+        animation: fadeIn 0.5s ease-in-out;
+    }}
 
     @keyframes fadeIn {{
         from {{ opacity: 0; }}
