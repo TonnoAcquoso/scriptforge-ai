@@ -199,14 +199,29 @@ with col2:
         st.session_state["mostra_guida_intensita"] = not st.session_state.get("mostra_guida_intensita", False)
 
 # Mostra guida se attiva
-if st.session_state.get("mostra_guida_intensita", False):
+ifif st.session_state.get("mostra_guida_intensita", False):
     st.markdown(
         """
-        <div style="background-color: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; color: white; font-size: 0.9rem;">
-        <b>Cos'è l’intensità emotiva?</b><br><br>
-        <b>Alta:</b> Tono epico, drammatico, coinvolgente. Ideale per storytelling potente.<br>
-        <b>Media:</b> Tono equilibrato, emotivo ma riflessivo.<br>
-        <b>Bassa:</b> Tono calmo, analitico o descrittivo, perfetto per spiegare senza pathos.
+        <div style="background-color: rgba(255,255,255,0.07); padding: 1rem 1.2rem; border-radius: 10px; color: white; font-size: 0.9rem; line-height: 1.6;">
+        <b>Guida all’intensità emotiva:</b><br><br>
+        L’intensità emotiva definisce la forza con cui lo script coinvolge lo spettatore a livello emotivo.<br><br>
+
+        <b>Alta:</b><br>
+        – Lo script punta a suscitare emozioni forti: adrenalina, commozione, stupore.<br>
+        – Adatto a finali epici, trasformazioni potenti o momenti chiave dell’anime.<br>
+        – Tono: drammatico, ispirazionale, cinematografico.<br><br>
+
+        <b>Media:</b><br>
+        – Bilancia emozione e riflessione.<br>
+        – Ideale per spiegare un personaggio, una scelta narrativa o un evento significativo.<br>
+        – Tono: empatico, profondo ma accessibile.<br><br>
+
+        <b>Bassa:</b><br>
+        – Tono più distaccato, descrittivo o analitico.<br>
+        – Perfetta per contenuti educativi, recensioni, o osservazioni oggettive.<br>
+        – Tono: calmo, professionale, razionale.<br><br>
+
+        <i>Scegli l’intensità in base all’effetto che vuoi ottenere nel lettore o spettatore.</i>
         </div>
         """,
         unsafe_allow_html=True
