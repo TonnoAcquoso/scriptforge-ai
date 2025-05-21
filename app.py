@@ -81,28 +81,28 @@ st.markdown(
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    gap: 12px;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
     }}
 
     .header-logo {{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #888;
     flex-shrink: 0;
+    margin-right: 10px;
     }}
 
     .header-title {{
-        font-size: clamp(20px, 5vw, 28px);
-        font-weight: bold;
-        color: white;
-        font-family: 'Montserrat', sans-serif;
-        text-align: center;
-        line-height: 1.2;
+    font-size: clamp(18px, 4vw, 26px);
+    font-weight: bold;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.2;
+    text-align: left;
     }}
 
     .section-title {{
@@ -215,7 +215,7 @@ st.markdown(
     f"""
     <div class="header-container">
         <img src="data:image/png;base64,{logo_base64}" class="header-logo">
-        <div class="header-title">ScriptForge AI – Generatore Script Narrativi</div>
+        <div class="header-title">ScriptForge AI –<br>Generatore Script Narrativi</div>
     </div>
     """,
     unsafe_allow_html=True
