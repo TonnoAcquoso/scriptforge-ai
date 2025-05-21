@@ -204,32 +204,23 @@ Queste sono le preferenze dell’utente:
 """
 
 
-# CONFIG
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])  # Sostituisci con la tua vera API Key
-
+# === CONFIG GPT ASSISTANT ===
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+ASSISTANT_ID = "asst_k8nUpECUsPnjCgPOfNdrs9el"
 
 def genera_script_con_gpt(prompt):
-    try:
-        with open("scriptforge_system_prompt.txt", "r") as f:
-            system_prompt = f.read()
-    except FileNotFoundError:
-        system_prompt = "Sei uno sceneggiatore esperto in narrativa anime."
-
-    response = client.chat.completions.create(
-        model="gpt-4o-2024-08-06",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.8,
-        max_tokens=2048
+    thread = client.beta.threads.create()
+    client.beta.threads.messages.create(
+        thread_id=thread.id,
+        role="user",
+        content=prompt
     )
-
-    if response.choices and response.choices[0].message.content:
-        return response.choices[0].message.content
-    else:
-        return "❌ Nessuna risposta generata da OpenAI."
-
+    run = client.beta.threads.runs.create_and_poll(
+        thread_id=thread.id,
+        assistant_id=ASSISTANT_ID
+    )
+    messages = client.beta.threads.messages.list(thread_id=thread.id)
+    return messages.data[0].content[0].text.value
 
 # === GENERA ===
 if st.button("⚙️ Genera Prompt"):
