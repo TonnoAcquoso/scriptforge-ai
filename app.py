@@ -349,7 +349,7 @@ def genera_script_con_gpt(prompt):
 if st.button("⚙️ Genera Prompt"):
     if tema and nicchia != "Scegli opzione" and stile != "Scegli opzione" and intensita != "Scegli opzione":
         prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
-                with st.spinner("Generazione in corso..."):
+            with st.spinner("Generazione in corso..."):
                     progress_bar = st.progress(0)
                     for i in range(5):
                         time.sleep(0.2)
