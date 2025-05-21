@@ -17,6 +17,8 @@ from io import BytesIO
 
 # === CONFIG ===
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
+if "script" not in st.session_state:
+    st.session_state["script"] = ""
 
 # === SFONDO ===
 response = requests.get(bg_url)
