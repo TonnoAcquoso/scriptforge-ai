@@ -57,18 +57,17 @@ st.markdown(
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 15px;
+        flex-direction: column;
+        gap: 10px;
         margin-bottom: 20px;
-        flex-wrap: wrap;
     }}
 
     .header-logo {{
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid #888;
-        flex-shrink: 0;
     }}
 
     .header-title {{
@@ -77,9 +76,6 @@ st.markdown(
         color: white;
         font-family: 'Montserrat', sans-serif;
         text-align: center;
-        white-space: normal;
-        word-break: break-word;
-        line-height: 1.2;
     }}
 
     .section-title {{
@@ -98,6 +94,7 @@ st.markdown(
         font-weight: 600;
     }}
 
+    /* Forza la manina su tutti gli elementi cliccabili */
     .stSelectbox div[data-baseweb="select"] *,
     .stSelectbox div[data-baseweb="select"] {{
         cursor: pointer !important;
@@ -145,34 +142,15 @@ st.markdown(
         font-style: italic !important;
     }}
 
-    @media screen and (max-width: 480px) {{
-        .header-title {{
-            font-size: 20px;
-            padding: 0 10px;
-        }}
-
-        .block-container {{
-            padding: 1rem;
-        }}
-
-        .section-title {{
-            font-size: 1rem;
-        }}
-
-        label {{
-            font-size: 14px;
-        }}
-
-        button[kind="secondary"] {{
-            display: block;
-            margin: 20px auto 10px auto;
-            width: 90%;
-        }}
+    .stButton button {{
+        display: block;
+        margin: 0 auto;
     }}
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 
 # === HEADER ===
