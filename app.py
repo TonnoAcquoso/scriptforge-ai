@@ -233,12 +233,14 @@ def genera_script_con_gpt(prompt):
 
 # === GENERA ===
 if st.button("⚙️ Genera Prompt"):
-    prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
-    
-    st.success("Prompt generato con successo!")
-
-    # Genera script direttamente con GPT
-    script = genera_script_con_gpt(prompt)
-    st.text_area("Risultato finale:", script, height=600)
-    
-
+    if tema and nicchia != "Scegli opzione" and stile != "Scegli opzione" and intensita != "Scegli opzione":
+        prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
+        script = genera_script_con_gpt(prompt)
+        
+        if script:
+            st.success("✅ Script generato con successo!")
+            st.text_area("Risultato finale:", script, height=600)
+        else:
+            st.error("❌ Nessuna risposta ricevuta da OpenAI.")
+    else:
+        st.warning("⚠️ Completa tutti i campi prima di generare lo script.")
