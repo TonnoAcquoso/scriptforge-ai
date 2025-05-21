@@ -80,7 +80,7 @@ st.markdown(
     .header-container {{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
     gap: 12px;
     margin-bottom: 20px;
