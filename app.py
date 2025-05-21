@@ -41,6 +41,14 @@ bg_base64 = base64.b64encode(buffered_bg.getvalue()).decode()
 # === LOGO ===
 logo_image = Image.open("banner_martello.jpg")
 
+# === CROP AUTOMATICO PER OTTENERE UN QUADRATO ===
+width, height = logo_image.size
+min_dim = min(width, height)
+left = (width - min_dim) // 2
+top = (height - min_dim) // 2
+right = (width + min_dim) // 2
+bottom = (height + min_dim) // 2
+logo_image = logo_image.crop((left, top, right, bottom))
 
 # === CONVERSIONE ===
 buffered_logo = BytesIO()
