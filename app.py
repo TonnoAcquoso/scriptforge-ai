@@ -234,16 +234,13 @@ intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0
 
  # Pulsante ? centrato sotto il campo
 if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità"):
-    st.session_state["mostra_guida"] = not st.session_state.get("mostra_guida", False)       
+    st.session_state["mostra_guida"] = not st.session_state.get("mostra_guida", False)
+        
         
 # Mostra guida se attiva
 if "mostra_guida" not in st.session_state:
     st.session_state["mostra_guida"] = False
 
-toggle_guida = st.button("?", key="help", help="Mostra/Nascondi guida", use_container_width=True)
-
-if toggle_guida:
-    st.session_state["mostra_guida"] = not st.session_state["mostra_guida"]
 
 
 if st.session_state["mostra_guida"]:
