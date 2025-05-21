@@ -5,7 +5,7 @@
 #    python -m streamlit run app.py
 # ---------------------------------------------------------
 
-bg_url = "https://raw.githubusercontent.com/TonnoAcquoso/scriptforge-ai/main/bg.jpg"
+bg_url = "https://github.com/TonnoAcquoso/scriptforge-ai/raw/main/bg.jpg"
 import requests # type: ignore
 import streamlit as st # type: ignore
 import openai  # type: ignore
