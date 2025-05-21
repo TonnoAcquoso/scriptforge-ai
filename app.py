@@ -34,7 +34,7 @@ logo_base64 = base64.b64encode(buffered_logo.getvalue()).decode()
 
 # === CSS DEFINITIVO ===
 st.markdown(
-    f"""
+    """
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
 
     <style>
