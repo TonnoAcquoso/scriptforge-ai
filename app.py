@@ -39,7 +39,7 @@ bg_image.save(buffered_bg, format="jpeg")
 bg_base64 = base64.b64encode(buffered_bg.getvalue()).decode() 
 
 # === LOGO ===
-logo_image = Image.open("banner_martello.jpg")
+logo_image = Image.open("banner_martello.png")
 
 # === CROP AUTOMATICO PER OTTENERE UN QUADRATO ===
 width, height = logo_image.size
@@ -52,7 +52,7 @@ logo_image = logo_image.crop((left, top, right, bottom))
 
 # === CONVERSIONE ===
 buffered_logo = BytesIO()
-logo_image.save(buffered_logo, format="JPEG")
+logo_image.save(buffered_logo, format="png")
 logo_base64 = base64.b64encode(buffered_logo.getvalue()).decode()
 
 # === CSS DEFINITIVO ===
@@ -214,7 +214,7 @@ st.markdown(
 st.markdown(
     f"""
     <div class="header-container">
-        <img src="data:image/jpeg;base64,{logo_base64}" class="header-logo">
+        <img src="data:image/png;base64,{logo_base64}" class="header-logo">
         <div class="header-title">ScriptForge AI – Generatore Script Narrativi</div>
     </div>
     """,
