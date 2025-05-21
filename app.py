@@ -67,13 +67,13 @@ st.markdown(
     }}
 
     .header-container {{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 20px;
-        text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;  /* cambia da column a row */
+    gap: 15px;
+    margin-bottom: 20px;
+    text-align: center;
     }}
 
     .header-logo {{
