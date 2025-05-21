@@ -190,27 +190,27 @@ tema = st.text_input("Inserisci Argomento")
 
 nicchia = st.selectbox("Seleziona la nicchia", nicchie, index=0)
 stile = st.selectbox("Seleziona lo stile narrativo", stili, index=0)
-col1, col2 = st.columns([0.8, 0.2])
+col1, col2 = st.columns([0.85, 0.15])
 with col1:
     intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0)
 with col2:
-    if st.button("❓", key="info_intensita"):
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("❓", key="guida_intensita"):
         st.session_state["mostra_guida_intensita"] = not st.session_state.get("mostra_guida_intensita", False)
 
-# Mostra la guida se attiva
+# Mostra guida se attiva
 if st.session_state.get("mostra_guida_intensita", False):
     st.markdown(
         """
-        <div style="background-color: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; color: white;">
+        <div style="background-color: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; color: white; font-size: 0.9rem;">
         <b>Cos'è l’intensità emotiva?</b><br><br>
-        <b>Alta:</b> Tono epico, drammatico, forte coinvolgimento. Perfetta per discorsi motivazionali o scene eroiche.<br>
-        <b>Media:</b> Equilibrata e coinvolgente, con momenti riflessivi. Ideale per educazione e storytelling personale.<br>
-        <b>Bassa:</b> Tono più calmo e descrittivo, usata per spiegare o analizzare con distacco.
+        <b>Alta:</b> Tono epico, drammatico, coinvolgente. Ideale per storytelling potente.<br>
+        <b>Media:</b> Tono equilibrato, emotivo ma riflessivo.<br>
+        <b>Bassa:</b> Tono calmo, analitico o descrittivo, perfetto per spiegare senza pathos.
         </div>
         """,
         unsafe_allow_html=True
     )
-
 
 # === PROMPT ===
 def genera_prompt_script_lungo(nicchia, stile, intensita, tema):
