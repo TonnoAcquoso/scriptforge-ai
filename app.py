@@ -233,8 +233,8 @@ stile = st.selectbox("Seleziona lo stile narrativo", stili, index=0)
 intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0)
 
  # Pulsante ? centrato sotto il campo
-        if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità"):
-            st.session_state["mostra_guida"] = True
+if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità"):
+    st.session_state["mostra_guida"] = True
         
         
 # Mostra guida se attiva
@@ -346,31 +346,31 @@ def genera_script_con_gpt(prompt):
     return messages.data[0].content[0].text.value
 
 # === GENERA ===
-        if st.button("⚙️ Genera Prompt"):
-            if tema and nicchia != "Scegli opzione" and stile != "Scegli opzione" and intensita != "Scegli opzione":
-                prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
-                script = genera_script_con_gpt(prompt)
-                st.session_state["script"] = script
-        
-                if script:
-                    st.success("✅ Script generato con successo!")
-                    st.text_area("Risultato finale:", st.session_state["script"], height=600)
-                else:
-                    st.error("❌ Nessuna risposta ricevuta da OpenAI.")
-            else:
-                st.warning("⚠️ Completa tutti i campi prima di generare lo script.")
+if st.button("⚙️ Genera Prompt"):
+    if tema and nicchia != "Scegli opzione" and stile != "Scegli opzione" and intensita != "Scegli opzione":
+        prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
+        script = genera_script_con_gpt(prompt)
+        st.session_state["script"] = script
+
+        if script:
+            st.success("✅ Script generato con successo!")
+            st.text_area("Risultato finale:", st.session_state["script"], height=600)
+        else:
+            st.error("❌ Nessuna risposta ricevuta da OpenAI.")
+    else:
+        st.warning("⚠️ Completa tutti i campi prima di generare lo script.")
                 
 # Bottone custom "?" intercettato
-                import streamlit.components.v1 as components
-                components.html("""
-                <script>
-                    const handler = () => {
-                        const streamlitEvent = new CustomEvent("streamlit:buttonClicked", { detail: { key: "help" } });
-                        window.dispatchEvent(streamlitEvent);
-                    };
-                    window.addEventListener("streamlit:buttonClicked_help", handler);
-                </script>
-                """, height=0)
+import streamlit.components.v1 as components # type: ignore
+components.html("""
+<script>
+    const handler = () => {
+        const streamlitEvent = new CustomEvent("streamlit:buttonClicked", { detail: { key: "help" } });
+        window.dispatchEvent(streamlitEvent);
+    };
+    window.addEventListener("streamlit:buttonClicked_help", handler);
+</script>
+""", height=0)
 
 # === SEZIONE DOWNLOAD FORMATO ===
 if st.session_state["script"]:
@@ -387,7 +387,7 @@ if st.session_state["script"]:
             mime="text/plain"
         )
     else:
-        from docx import Document
+        from docx import Document # type: ignore
         doc = Document()
         for line in st.session_state["script"].split("\n"):
             doc.add_paragraph(line)
