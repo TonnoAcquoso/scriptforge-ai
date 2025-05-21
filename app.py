@@ -191,6 +191,12 @@ st.markdown(
     .help-icon:hover {{
         background-color: #777;
     }}
+    
+    button[title="Clicca per aprire la guida sull'intensità"] {{
+                display: block;
+                margin: 0 auto;
+            }}
+    
     </style>
     """,
     unsafe_allow_html=True
@@ -229,16 +235,6 @@ intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0
  # Pulsante ? centrato sotto il campo
         if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità"):
             st.session_state["mostra_guida"] = True
-        
-        # Centramelo con markdown
-        st.markdown("""
-        <style>
-        button[title="Clicca per aprire la guida sull'intensità"] {
-            display: block;
-            margin: 0 auto;
-        }
-        </style>
-        """, unsafe_allow_html=True)
         
         
 # Mostra guida se attiva
