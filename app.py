@@ -187,7 +187,7 @@ Includi obbligatoriamente:
 – 1200/1500 parole di script e della durata di 10 minuti
 – Voice-over integrato (tra parentesi: tono, ritmo, pause)
 – Scene con timestamp verificati (episodio + minuto esatto, fonti affidabili)
-– Approfondimenti culturali, psicologici o simbolici dove utili
+– Approfondimenti culturali, psicologici o simbolici
 – Montaggio suggerito: evidenzia i momenti visivi più forti o emotivi
 – Call to action narrativa *inserita nell’ultima frase*, senza chiusura esplicita
 
@@ -234,7 +234,7 @@ def genera_script_con_gpt(prompt):
 # === GENERA ===
 if st.button("⚙️ Genera Prompt"):
     prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
-    # st.code(prompt, language="markdown")  # Solo per debug
+    
     st.success("Prompt generato con successo!")
 
     # Genera script direttamente con GPT
