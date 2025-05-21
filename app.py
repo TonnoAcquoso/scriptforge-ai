@@ -5,7 +5,7 @@
 #    python -m streamlit run app.py
 # ---------------------------------------------------------
 
-bg_url = "https://raw.githubusercontent.com/TonnoAcquoso/scriptforge-ai/main/bg.jpg"
+bg_url = "https://i.imgur.com/ujQBvFG.jpeg"
 import requests # type: ignore
 import streamlit as st # type: ignore
 import openai  # type: ignore
@@ -42,7 +42,7 @@ st.markdown(
         height: 100%;
         margin: 0;
         padding: 0;
-        background: url("https://raw.githubusercontent.com/TonnoAcquoso/scriptforge-ai/main/bg.jpg") no-repeat center center fixed;
+        background: url("https://i.imgur.com/ujQBvFG.jpeg") no-repeat center center fixed;
         background-size: cover;
     }}
 
