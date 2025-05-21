@@ -66,13 +66,13 @@ st.markdown(
         margin: auto;
     }}
 
-    .header-container {{
+    .header-flex {{
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;  /* cambia da column a row */
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
     text-align: center;
     }}
 
@@ -205,9 +205,9 @@ st.markdown(
 # === HEADER ===
 st.markdown(
     f"""
-    <div class="header-container row">
+    <div class="header-flex">
         <img src="data:image/jpeg;base64,{logo_base64}" class="header-logo">
-        <div class="header-title">ScriptForge AI – Generatore Script Narrativi</div>
+        <h1 class="header-title">ScriptForge AI – Generatore Script Narrativi</h1>
     </div>
     """,
     unsafe_allow_html=True
