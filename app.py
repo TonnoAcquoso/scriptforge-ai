@@ -17,6 +17,9 @@ from io import BytesIO
 if "script" not in st.session_state:
     st.session_state["script"] = ""
 
+if "mostra_guida_intensita" not in st.session_state:
+    st.session_state["mostra_guida_intensita"] = False
+
 # === CONFIG ===
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
 
@@ -187,7 +190,26 @@ tema = st.text_input("Inserisci Argomento")
 
 nicchia = st.selectbox("Seleziona la nicchia", nicchie, index=0)
 stile = st.selectbox("Seleziona lo stile narrativo", stili, index=0)
-intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0)
+col1, col2 = st.columns([0.8, 0.2])
+with col1:
+    intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0)
+with col2:
+    if st.button("❓", key="info_intensita"):
+        st.session_state["mostra_guida_intensita"] = not st.session_state.get("mostra_guida_intensita", False)
+
+# Mostra la guida se attiva
+if st.session_state.get("mostra_guida_intensita", False):
+    st.markdown(
+        """
+        <div style="background-color: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; color: white;">
+        <b>Cos'è l’intensità emotiva?</b><br><br>
+        <b>Alta:</b> Tono epico, drammatico, forte coinvolgimento. Perfetta per discorsi motivazionali o scene eroiche.<br>
+        <b>Media:</b> Equilibrata e coinvolgente, con momenti riflessivi. Ideale per educazione e storytelling personale.<br>
+        <b>Bassa:</b> Tono più calmo e descrittivo, usata per spiegare o analizzare con distacco.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 
 # === PROMPT ===
