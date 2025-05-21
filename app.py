@@ -19,6 +19,7 @@ st.set_page_config(page_title="ScriptForge AI", layout="centered")
 
 # === SFONDO ===
 response = requests.get(bg_url)
+background-color: #000;
 # bg_image = Image.open(BytesIO(response.content))
 # bg_image = Image.open("bg.jpg") Se vuoi lanciarlo in locale
 # buffered_bg = BytesIO()
