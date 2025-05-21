@@ -25,8 +25,14 @@ if "mostra_guida" not in st.session_state:
     st.session_state["mostra_guida"] = False
 
 # === SFONDO ===
-response = requests.get(bg_url)
-bg_image = Image.open(BytesIO(response.content))
+try:
+    response = requests.get(bg_url)
+    bg_image = Image.open(BytesIO(response.content))
+except Exception:
+    from PIL import ImageDraw
+    st.warning("⚠️ Impossibile caricare l’immagine di sfondo online. Verrà utilizzato uno sfondo nero di default.")
+    bg_image = Image.new("RGB", (1920, 1080), color="black")
+    
 # bg_image = Image.open("bg.jpg") Se vuoi lanciarlo in locale #
 buffered_bg = BytesIO()
 bg_image.save(buffered_bg, format="JPEG")
