@@ -231,15 +231,14 @@ tema = st.text_input("Inserisci Argomento")
 nicchia = st.selectbox("Seleziona la nicchia", nicchie, index=0)
 stile = st.selectbox("Seleziona lo stile narrativo", stili, index=0)
 intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0)
-        
+
+ # Pulsante ? centrato sotto il campo
+if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità"):
+    st.session_state["mostra_guida"] = not st.session_state.get("mostra_guida", False)       
         
 # Mostra guida se attiva
 if "mostra_guida" not in st.session_state:
     st.session_state["mostra_guida"] = False
-
- # Pulsante ? centrato sotto il campo
-if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità"):
-    st.session_state["mostra_guida"] = not st.session_state.get("mostra_guida", False)
 
 toggle_guida = st.button("?", key="help", help="Mostra/Nascondi guida", use_container_width=True)
 
