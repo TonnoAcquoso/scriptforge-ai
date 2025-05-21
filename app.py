@@ -55,11 +55,12 @@ st.markdown(
     }}
 
     .block-container {{
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: linear-gradient(135deg, #4fc3f7, #616161, #000000); /* Azzurro - Grigio - Nero */
         padding: 2rem;
         border-radius: 12px;
         max-width: 700px;
         margin: auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     }}
 
     .header-container {{
@@ -372,6 +373,7 @@ components.html("""
 """, height=0)
 
 # === SEZIONE DOWNLOAD FORMATO ===
+file_name = st.text_unput("Nome file da salvare (senza estensione)", "script")
 if st.session_state["script"]:
     st.markdown("---")
     st.markdown("**Scarica lo script:**")
@@ -382,7 +384,7 @@ if st.session_state["script"]:
         st.download_button(
             label="⬇️ Scarica .txt",
             data=st.session_state["script"],
-            file_name="script.txt",
+            file_name=f"{file_name}.txt",
             mime="text/plain"
         )
     else:
@@ -396,6 +398,6 @@ if st.session_state["script"]:
         st.download_button(
             label="⬇️ Scarica .docx",
             data=buffer,
-            file_name="script.docx",
+            file_name=f"{file_name}.docx",
             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         )
