@@ -14,11 +14,6 @@ from PIL import Image # type: ignore
 import base64
 from io import BytesIO
 
-if "script" not in st.session_state:
-    st.session_state["script"] = ""
-
-if "mostra_guida_intensita" not in st.session_state:
-    st.session_state["mostra_guida_intensita"] = False
 
 # === CONFIG ===
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
@@ -155,6 +150,34 @@ st.markdown(
         opacity: 0.6 !important;
         font-style: italic !important;
     }}
+    .fade-in {{
+    animation: fadeIn 0.5s ease-in-out;
+    }}
+        @keyframes fadeIn {{
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }}
+
+        .intensity-row {{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}}
+
+        .help-icon {{
+    background-color: #555;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 9px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    }}
+
+    .help-icon:hover {{
+    background-color: #777;
+    }}
 
     </style>
     """,
@@ -190,42 +213,72 @@ tema = st.text_input("Inserisci Argomento")
 
 nicchia = st.selectbox("Seleziona la nicchia", nicchie, index=0)
 stile = st.selectbox("Seleziona lo stile narrativo", stili, index=0)
-col1, col2 = st.columns([0.85, 0.15])
+col1, col2 = st.columns([6, 1])
 with col1:
     intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0)
 with col2:
-    st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("❓", key="guida_intensita"):
-        st.session_state["mostra_guida_intensita"] = not st.session_state.get("mostra_guida_intensita", False)
-
+    if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità", use_container_width=True):
+        st.session_state["mostra_guida"] = True
+        
+        
 # Mostra guida se attiva
-if st.session_state.get("mostra_guida_intensita", False):
-    st.markdown(
-        """
-        <div style="background-color: rgba(255,255,255,0.07); padding: 1rem 1.2rem; border-radius: 10px; color: white; font-size: 0.9rem; line-height: 1.6;">
-        <b>Guida all’intensità emotiva:</b><br><br>
-        L’intensità emotiva definisce la forza con cui lo script coinvolge lo spettatore a livello emotivo.<br><br>
+if "mostra_guida" not in st.session_state:
+    st.session_state["mostra_guida"] = False
 
-        <b>Alta:</b><br>
-        – Lo script punta a suscitare emozioni forti: adrenalina, commozione, stupore.<br>
-        – Adatto a finali epici, trasformazioni potenti o momenti chiave dell’anime.<br>
-        – Tono: drammatico, ispirazionale, cinematografico.<br><br>
+if st.session_state["mostra_guida"]:
+    st.markdown("---")
+    st.markdown("<div class='section-title'>Guida ai parametri</div>", unsafe_allow_html=True)
 
-        <b>Media:</b><br>
-        – Bilancia emozione e riflessione.<br>
-        – Ideale per spiegare un personaggio, una scelta narrativa o un evento significativo.<br>
-        – Tono: empatico, profondo ma accessibile.<br><br>
+    guide_titles = ["Intensità Emotiva", "Stile Narrativo", "Scelta della Nicchia"]
+    guida_selezionata = st.radio("Seleziona la guida:", guide_titles, horizontal=True)
 
-        <b>Bassa:</b><br>
-        – Tono più distaccato, descrittivo o analitico.<br>
-        – Perfetta per contenuti educativi, recensioni, o osservazioni oggettive.<br>
-        – Tono: calmo, professionale, razionale.<br><br>
+    st.markdown('<div class="fade-in">', unsafe_allow_html=True)
 
-        <i>Scegli l’intensità in base all’effetto che vuoi ottenere nel lettore o spettatore.</i>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    if guida_selezionata == "Intensità Emotiva":
+        st.markdown("""
+### Guida all’intensità emotiva:
+
+L’intensità emotiva definisce la forza con cui lo script coinvolge lo spettatore a livello emotivo.
+
+**Alta:**
+- Lo script punta a suscitare emozioni forti: adrenalina, commozione, stupore.
+- Adatto a finali epici, trasformazioni potenti o momenti chiave dell’anime.
+- Tono: drammatico, ispirazionale, cinematografico.
+
+**Media:**
+- Bilancia emozione e riflessione.
+- Ideale per spiegare un personaggio, una scelta narrativa o un evento significativo.
+- Tono: empatico, profondo ma accessibile.
+
+**Bassa:**
+- Tono più distaccato, descrittivo o analitico.
+- Perfetta per contenuti educativi, recensioni, o osservazioni oggettive.
+- Tono: calmo, professionale, razionale.
+
+*Scegli in base all’effetto che vuoi ottenere.*
+""")
+    elif guida_selezionata == "Stile Narrativo":
+        st.markdown("""
+### Guida allo stile narrativo:
+
+**Epico:** narrazione eroica, ritmo serrato, finale potente.  
+**Lirico:** tono poetico, descrizioni evocative.  
+**Psicologico:** introspezione, conflitti interiori.  
+**Ironico:** tono leggero, critico, sarcastico.  
+**Analitico:** stile oggettivo, basato su logica e struttura.
+""")
+    elif guida_selezionata == "Scelta della Nicchia":
+        st.markdown("""
+### Guida alla scelta della nicchia:
+
+**Anime:** per analisi narrative, personaggi e momenti iconici.  
+**Podcast:** per contenuti ascoltabili, chiari e ritmici.  
+**Educazione:** per spiegazioni, storytelling didattico.  
+**Brand:** per raccontare visioni aziendali in modo creativo.  
+**Biografie:** per narrare vite in modo coinvolgente.
+""")
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # === PROMPT ===
 def genera_prompt_script_lungo(nicchia, stile, intensita, tema):
