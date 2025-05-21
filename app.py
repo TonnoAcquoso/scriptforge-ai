@@ -5,7 +5,7 @@
 #    python -m streamlit run app.py
 # ---------------------------------------------------------
 
-bg_url = "https://i.imgur.com/ujQBvFG.jpeg"
+bg_url = "https://i.imgur.com/TTviKFS.jpeg"
 import requests # type: ignore
 import streamlit as st # type: ignore
 import openai  # type: ignore
