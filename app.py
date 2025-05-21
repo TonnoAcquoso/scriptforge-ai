@@ -175,7 +175,12 @@ st.markdown(
 # === PARAMETRI ===
 st.markdown("<div class='section-title'>Imposta i parametri</div>", unsafe_allow_html=True)
 
-nicchie = ["Scegli opzione", "Anime", "Podcast", "Educazione", "Brand", "Biografie"]
+nicchie = [
+    "Scegli opzione", "Anime", "Podcast", "Educazione", "Brand", "Biografie",
+    "Storia Personale", "Startup / Business", "Motivazionale",
+    "Tecnologia", "Crime / Mistero", "Fantasy", "Sci-Fi",
+    "Educazione Finanziaria", "Salute e Benessere"
+]
 stili = ["Scegli opzione", "Epico", "Lirico", "Psicologico", "Ironico", "Analitico"]
 intensità = ["Scegli opzione", "Alta", "Media", "Bassa"]
 tema = st.text_input("Inserisci Argomento")
