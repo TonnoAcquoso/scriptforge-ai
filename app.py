@@ -57,8 +57,10 @@ st.markdown(
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
         gap: 15px;
         margin-bottom: 20px;
+        text-align: center;
     }}
 
     .header-logo {{
@@ -75,7 +77,8 @@ st.markdown(
         font-weight: bold;
         color: white;
         font-family: 'Montserrat', sans-serif;
-        white-space: nowrap;
+        white-space: normal;
+        text-align: center;
     }}
 
     .section-title {{
@@ -93,65 +96,72 @@ st.markdown(
         font-weight: 600;
     }}
 
-    /* Forza la manina su tutti gli elementi cliccabili */
-        .stSelectbox div[data-baseweb="select"] *,
-        .stSelectbox div[data-baseweb="select"] {{
-            cursor: pointer !important;
-            }}
-
-    input:focus, textarea:focus {{
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
+    .stSelectbox div[data-baseweb="select"] *,
+    .stSelectbox div[data-baseweb="select"] {{
+        cursor: pointer !important;
     }}
 
-        /* Applica a TUTTI i selectbox (compresi quelli problematici) */
-        div[data-baseweb="select"] > div {{
-            border: none !important;
-            box-shadow: none !important;
-            outline: none !important;
+    input:focus, textarea:focus {{
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }}
+
+    div[data-baseweb="select"] > div {{
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }}
+
+    div[data-baseweb="select"] > div:focus-within {{
+        border: 2px solid white !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }}
+
+    div[data-baseweb="select"]:focus-within {{
+        box-shadow: none !important;
+    }}
+
+    div[data-baseweb="input"] {{
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }}
+
+    div[data-baseweb="input"]:focus-within {{
+        border: 2px solid white !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }}
+
+    div[data-baseweb="select"] > div > div:first-child {{
+        color: #999 !important;
+        opacity: 0.6 !important;
+        font-style: italic !important;
+    }}
+
+    /* === RESPONSIVE === */
+    @media screen and (max-width: 480px) {{
+        .header-title {{
+            font-size: 20px;
         }}
-
-        /* BORDO BIANCO quando il riquadro è attivo */
-        div[data-baseweb="select"] > div:focus-within {{
-            border: 2px solid white !important;
-            border-radius: 8px !important;
-            box-shadow: none !important;
-            outline: none !important;
+        .block-container {{
+            padding: 1rem;
         }}
-
-        /* Forza stile anche in casi di override da streamlit */
-        div[data-baseweb="select"]:focus-within {{
-            box-shadow: none !important;
+        .section-title {{
+            font-size: 1rem;
         }}
-
-        /* Campo di testo (argomento) – solo bordo bianco al focus */
-        div[data-baseweb="input"] {{
-            border: none !important;
-            box-shadow: none !important;
-            outline: none !important;
+        label {{
+            font-size: 14px;
         }}
-
-        div[data-baseweb="input"]:focus-within {{
-            border: 2px solid white !important;
-            border-radius: 8px !important;
-            box-shadow: none !important;
-            outline: none !important;
-        }}
-
-        /* Se la voce selezionata è la prima (cioè "Scegli opzione") */
-        div[data-baseweb="select"] > div > div:first-child {{
-            color: #999 !important;
-            opacity: 0.6 !important;
-                font-style: italic !important;
-                }}
-
-
+    }}
     </style>
     """,
     unsafe_allow_html=True
 )
-
 
 # === HEADER ===
 st.markdown(
