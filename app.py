@@ -6,7 +6,7 @@
 # ---------------------------------------------------------
 
 # bg_url = "https://i.imgur.com/ujQBvFG.jpeg"
-import requests # type: ignore
+# import requests # type: ignore
 import streamlit as st # type: ignore
 import openai  # type: ignore
 from openai import OpenAI  # type: ignore
@@ -18,7 +18,7 @@ from io import BytesIO
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
 
 # === SFONDO ===
-response = requests.get(bg_url)
+# response = requests.get(bg_url)
 # bg_image = Image.open(BytesIO(response.content))
 # bg_image = Image.open("bg.jpg") Se vuoi lanciarlo in locale
 # buffered_bg = BytesIO()
