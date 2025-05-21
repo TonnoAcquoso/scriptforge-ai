@@ -5,7 +5,7 @@
 #    python -m streamlit run app.py
 # ---------------------------------------------------------
 
-bg_url = "https://i.imgur.com/TTviKFS.jpeg"
+import time # type: ignore
 import requests # type: ignore
 import streamlit as st # type: ignore
 import openai  # type: ignore
@@ -349,7 +349,13 @@ def genera_script_con_gpt(prompt):
 if st.button("⚙️ Genera Prompt"):
     if tema and nicchia != "Scegli opzione" and stile != "Scegli opzione" and intensita != "Scegli opzione":
         prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
-        script = genera_script_con_gpt(prompt)
+                with st.spinner("Generazione in corso..."):
+                    progress_bar = st.progress(0)
+                    for i in range(5):
+                        time.sleep(0.2)
+                        progress_bar.progress((i + 1) * 20)
+                    script = genera_script_con_gpt(prompt)
+                    progress_bar.empty()
         st.session_state["script"] = script
 
         if script:
