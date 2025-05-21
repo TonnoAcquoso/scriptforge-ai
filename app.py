@@ -216,7 +216,7 @@ def genera_script_con_gpt(prompt):
         system_prompt = "Sei uno sceneggiatore esperto in narrativa anime."
 
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4o-2024-08-06",
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": prompt}
