@@ -25,18 +25,18 @@ if "mostra_guida" not in st.session_state:
     st.session_state["mostra_guida"] = False
 
 # === SFONDO ===
-try:
-    response = requests.get(bg_url)
-    bg_image = Image.open(BytesIO(response.content))
-except Exception:
-    from PIL import ImageDraw # type: ignore
-    st.warning("⚠️ Impossibile caricare l’immagine di sfondo online. Verrà utilizzato uno sfondo nero di default.")
-    bg_image = Image.new("RGB", (1920, 1080), color="black")
+#try:
+#    response = requests.get(bg_url)
+#    bg_image = Image.open(BytesIO(response.content))
+#except Exception:
+#    from PIL import ImageDraw # type: ignore
+#    st.warning("⚠️ Impossibile caricare l’immagine di sfondo online. Verrà utilizzato uno sfondo nero di default.")
+#    bg_image = Image.new("RGB", (1920, 1080), color="black") 
     
 # bg_image = Image.open("bg.jpg") Se vuoi lanciarlo in locale #
-buffered_bg = BytesIO()
-bg_image.save(buffered_bg, format="jpeg")
-bg_base64 = base64.b64encode(buffered_bg.getvalue()).decode() 
+#buffered_bg = BytesIO()
+#bg_image.save(buffered_bg, format="jpeg")
+#bg_base64 = base64.b64encode(buffered_bg.getvalue()).decode() 
 
 # === LOGO ===
 #logo_base64 = ""
@@ -51,8 +51,7 @@ st.markdown(
         height: 100%;
         margin: 0;
         padding: 0;
-        background: url("https://i.imgur.com/ujQBvFG.jpeg") no-repeat center center fixed;
-        background-size: cover;
+        background-color: #0a0f1c; /* Blu/nero elegante */
     }}
 
     .block-container {{
@@ -240,8 +239,6 @@ if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità")
 # Mostra guida se attiva
 if "mostra_guida" not in st.session_state:
     st.session_state["mostra_guida"] = False
-
-
 
 if st.session_state["mostra_guida"]:
     st.markdown("---")
