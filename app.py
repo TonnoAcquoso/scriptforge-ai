@@ -236,39 +236,39 @@ if st.button("⚙️ Genera Prompt"):
     if tema and nicchia != "Scegli opzione" and stile != "Scegli opzione" and intensita != "Scegli opzione":
         prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
         script = genera_script_con_gpt(prompt)
-        
+
         if script:
             st.success("✅ Script generato con successo!")
             st.text_area("Risultato finale:", script, height=600)
+
+            # === SEZIONE DOWNLOAD FORMATO ===
+            st.markdown("---")
+            st.markdown("**Scarica lo script:**")
+
+            formato = st.radio("Seleziona il formato di download", ["TXT", "DOCX"], horizontal=True)
+
+            if formato == "TXT":
+                st.download_button(
+                    label="⬇️ Scarica .txt",
+                    data=script,
+                    file_name="script.txt",
+                    mime="text/plain"
+                )
+            else:
+                from docx import Document
+                doc = Document()
+                for line in script.split("\n"):
+                    doc.add_paragraph(line)
+                buffer = BytesIO()
+                doc.save(buffer)
+                buffer.seek(0)
+                st.download_button(
+                    label="⬇️ Scarica .docx",
+                    data=buffer,
+                    file_name="script.docx",
+                    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                )
         else:
             st.error("❌ Nessuna risposta ricevuta da OpenAI.")
     else:
         st.warning("⚠️ Completa tutti i campi prima di generare lo script.")
-        # === SEZIONE DOWNLOAD FORMATO ===
-        st.markdown("---")
-        st.markdown("**Scarica lo script:**")
-
-        formato = st.radio("Seleziona il formato di download", ["TXT", "DOCX"], horizontal=True)
-
-        if formato == "TXT":
-            st.download_button(
-                label="⬇️ Scarica .txt",
-                data=script,
-                file_name="script.txt",
-                mime="text/plain"
-            )
-        else:
-            from docx import Document  # assicurati che 'python-docx' sia in requirements.txt
-            doc = Document()
-            for line in script.split("\n"):
-                doc.add_paragraph(line)
-            buffer = BytesIO()
-            doc.save(buffer)
-            buffer.seek(0)
-            st.download_button(
-                label="⬇️ Scarica .docx",
-                data=buffer,
-                file_name="script.docx",
-                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            )
-
