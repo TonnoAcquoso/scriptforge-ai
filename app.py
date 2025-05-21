@@ -373,11 +373,11 @@ components.html("""
 """, height=0)
 
 # === SEZIONE DOWNLOAD FORMATO ===
-file_name = st.text_input("Nome file da salvare (senza estensione)", "script")
+
 if st.session_state["script"]:
     st.markdown("---")
     st.markdown("**Scarica lo script:**")
-
+    file_name = st.text_input("Nome file da salvare (senza estensione)", "script")
     formato = st.radio("Seleziona il formato di download", ["TXT", "DOCX"], horizontal=True)
 
     if formato == "TXT":
