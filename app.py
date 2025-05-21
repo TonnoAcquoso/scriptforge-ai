@@ -66,23 +66,23 @@ st.markdown(
         margin: auto;
     }}
 
-    .header-flex {{
+    .header-container {{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
     text-align: center;
     }}
 
     .header-logo {{
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid #888;
-        flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #888;
+    flex-shrink: 0;
     }}
 
     .header-title {{
@@ -199,15 +199,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-
-
 # === HEADER ===
 st.markdown(
     f"""
-    <div class="header-flex">
+    <div class="header-container" style="flex-direction: row; gap: 15px;">
         <img src="data:image/jpeg;base64,{logo_base64}" class="header-logo">
-        <h1 class="header-title">ScriptForge AI – Generatore Script Narrativi</h1>
+        <div class="header-title">ScriptForge AI – Generatore Script Narrativi</div>
     </div>
     """,
     unsafe_allow_html=True
