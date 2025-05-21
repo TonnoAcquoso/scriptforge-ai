@@ -205,7 +205,7 @@ st.markdown(
 # === HEADER ===
 st.markdown(
     f"""
-    <div class="header-container">
+    <div class="header-container row">
         <img src="data:image/jpeg;base64,{logo_base64}" class="header-logo">
         <div class="header-title">ScriptForge AI – Generatore Script Narrativi</div>
     </div>
