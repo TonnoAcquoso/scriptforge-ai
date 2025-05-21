@@ -19,11 +19,11 @@ st.set_page_config(page_title="ScriptForge AI", layout="centered")
 
 # === SFONDO ===
 response = requests.get(bg_url)
-bg_image = Image.open(BytesIO(response.content))
-# bg_image = Image.open("bg.jpg") # Se vuoi lanciarlo in locale
-buffered_bg = BytesIO()
-bg_image.save(buffered_bg, format="JPEG")
-bg_base64 = base64.b64encode(buffered_bg.getvalue()).decode()
+# bg_image = Image.open(BytesIO(response.content))
+# bg_image = Image.open("bg.jpg") Se vuoi lanciarlo in locale
+# buffered_bg = BytesIO()
+# bg_image.save(buffered_bg, format="JPEG")
+# bg_base64 = base64.b64encode(buffered_bg.getvalue()).decode() 
 
 # === LOGO ===
 logo_image = Image.open("banner_martello.jpg")
@@ -41,7 +41,7 @@ st.markdown(
         height: 100%;
         margin: 0;
         padding: 0;
-        background: url("data:image/jpeg;base64,{bg_base64}") no-repeat center center fixed;
+        background: url("https://github.com/TonnoAcquoso/scriptforge-ai/raw/main/bg.jpg") no-repeat center center fixed;
         background-size: cover;
     }}
 
