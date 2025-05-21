@@ -224,12 +224,21 @@ tema = st.text_input("Inserisci Argomento")
 
 nicchia = st.selectbox("Seleziona la nicchia", nicchie, index=0)
 stile = st.selectbox("Seleziona lo stile narrativo", stili, index=0)
-col1, col2 = st.columns([6, 1])
-with col1:
-    intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0)
-with col2:
-    if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità", use_container_width=True):
-        st.session_state["mostra_guida"] = True
+intensita = st.selectbox("Seleziona l’intensità emotiva", intensità, index=0)
+
+ # Pulsante ? centrato sotto il campo
+        if st.button("?", key="help", help="Clicca per aprire la guida sull'intensità"):
+            st.session_state["mostra_guida"] = True
+        
+        # Centramelo con markdown
+        st.markdown("""
+        <style>
+        button[title="Clicca per aprire la guida sull'intensità"] {
+            display: block;
+            margin: 0 auto;
+        }
+        </style>
+        """, unsafe_allow_html=True)
         
         
 # Mostra guida se attiva
@@ -341,19 +350,31 @@ def genera_script_con_gpt(prompt):
     return messages.data[0].content[0].text.value
 
 # === GENERA ===
-if st.button("⚙️ Genera Prompt"):
-    if tema and nicchia != "Scegli opzione" and stile != "Scegli opzione" and intensita != "Scegli opzione":
-        prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
-        script = genera_script_con_gpt(prompt)
-        st.session_state["script"] = script
-
-        if script:
-            st.success("✅ Script generato con successo!")
-            st.text_area("Risultato finale:", st.session_state["script"], height=600)
-        else:
-            st.error("❌ Nessuna risposta ricevuta da OpenAI.")
-    else:
-        st.warning("⚠️ Completa tutti i campi prima di generare lo script.")
+        if st.button("⚙️ Genera Prompt"):
+            if tema and nicchia != "Scegli opzione" and stile != "Scegli opzione" and intensita != "Scegli opzione":
+                prompt = genera_prompt_script_lungo(nicchia, stile, intensita, tema)
+                script = genera_script_con_gpt(prompt)
+                st.session_state["script"] = script
+        
+                if script:
+                    st.success("✅ Script generato con successo!")
+                    st.text_area("Risultato finale:", st.session_state["script"], height=600)
+                else:
+                    st.error("❌ Nessuna risposta ricevuta da OpenAI.")
+            else:
+                st.warning("⚠️ Completa tutti i campi prima di generare lo script.")
+                
+# Bottone custom "?" intercettato
+                import streamlit.components.v1 as components
+                components.html("""
+                <script>
+                    const handler = () => {
+                        const streamlitEvent = new CustomEvent("streamlit:buttonClicked", { detail: { key: "help" } });
+                        window.dispatchEvent(streamlitEvent);
+                    };
+                    window.addEventListener("streamlit:buttonClicked_help", handler);
+                </script>
+                """, height=0)
 
 # === SEZIONE DOWNLOAD FORMATO ===
 if st.session_state["script"]:
