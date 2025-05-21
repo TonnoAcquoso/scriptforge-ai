@@ -154,7 +154,7 @@ st.markdown(
     animation: fadeIn 0.5s ease-in-out;
     }}
         @keyframes fadeIn {{
-            from { opacity: 0; }
+    from { opacity: 0; }
             to { opacity: 1; }
         }}
 
