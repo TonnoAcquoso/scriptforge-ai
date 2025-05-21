@@ -60,27 +60,30 @@ st.markdown(
         flex-direction: column;
         gap: 10px;
         margin-bottom: 20px;
+        text-align: center;
     }}
 
     .header-logo {{
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid #888;
+        flex-shrink: 0;
     }}
 
     .header-title {{
-        font-size: 28px;
+        font-size: clamp(20px, 5vw, 28px);
         font-weight: bold;
         color: white;
         font-family: 'Montserrat', sans-serif;
         text-align: center;
+        line-height: 1.2;
     }}
 
     .section-title {{
         font-weight: bold;
-        font-size: 1.2rem;
+        font-size: clamp(16px, 4vw, 20px);
         margin-top: 1.5rem;
         color: white;
         font-family: 'Montserrat', sans-serif;
@@ -90,8 +93,13 @@ st.markdown(
     label, .stSelectbox label, .stTextInput label {{
         color: white;
         font-family: 'Montserrat', sans-serif;
-        font-size: 16px;
+        font-size: clamp(14px, 3.5vw, 16px);
         font-weight: 600;
+    }}
+
+    .stButton button {{
+        display: block;
+        margin: 0 auto;
     }}
 
     /* Forza la manina su tutti gli elementi cliccabili */
@@ -142,14 +150,11 @@ st.markdown(
         font-style: italic !important;
     }}
 
-    .stButton button {{
-        display: block;
-        margin: 0 auto;
-    }}
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
