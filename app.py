@@ -17,8 +17,12 @@ from io import BytesIO
 
 # === CONFIG ===
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
+
+# === SESSION STATE INIT ===
 if "script" not in st.session_state:
     st.session_state["script"] = ""
+if "mostra_guida" not in st.session_state:
+    st.session_state["mostra_guida"] = False
 
 # === SFONDO ===
 response = requests.get(bg_url)
