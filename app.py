@@ -101,6 +101,37 @@ window.onload = () => {
 </script>
 """, unsafe_allow_html=True)
 
+
+# === SWITCH TEMA ===
+st.markdown("<h6 style='text-align: center;'>Tema interfaccia</h6>", unsafe_allow_html=True)
+theme = st.selectbox("Scegli il tema", ["Dark", "Light"], index=0)
+
+if theme == "Dark":
+    st.markdown(
+        '''
+        <style>
+        :root {
+            --bg-color: #0e0e11;
+            --text-color: #ffffff;
+        }
+        </style>
+        ''',
+        unsafe_allow_html=True
+    )
+else:
+    st.markdown(
+        '''
+        <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+        }
+        </style>
+        ''',
+        unsafe_allow_html=True
+    )
+
+
 # === SESSION STATE INIT ===
 if "script" not in st.session_state:
     st.session_state["script"] = ""
