@@ -101,20 +101,6 @@ st.markdown(
     transition: color o.3s ease;
     }}
 
-    /* Dark Mode */
-    @media (prefers-color-scheme: dark) {{
-        .header-title {{
-            color: white; 
-        }}
-    }}
-
-    /* Light Mode */
-    @media (prefers-color-scheme: light) {{
-        .header-title {{
-            color: black; 
-        }}
-    }}
-
     .section-title {{
         font-weight: bold;
         font-size: clamp(16px, 4vw, 20px);
