@@ -25,75 +25,78 @@ def rileva_tema():
 # === CONFIG ===
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
 
-st.markdown(
-    """
-    <style>
-    .theme-toggle {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 9999;
-    }
-    .toggle-switch {
-        width: 60px;
-        height: 30px;
-        background-color: #ccc;
-        border-radius: 30px;
-        position: relative;
-        cursor: pointer;
-    }
-    .toggle-circle {
-        width: 26px;
-        height: 26px;
-        background-color: #111;
-        border-radius: 50%;
-        position: absolute;
-        top: 2px;
-        left: 2px;
-        transition: all 0.3s ease;
-    }
-    .toggle-switch.light {
-        background-color: #f1f1f1;
-    }
-    .toggle-switch.light .toggle-circle {
-        left: 32px;
-        background-color: #fff;
-    }
+st.markdown("""
+<script>
+function toggleTheme() {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
 
-    body.light-mode {
-        background-color: #f5f5f5;
-        color: #111;
+    // Cambia icona
+    const icon = document.getElementById("theme-icon");
+    if (next === 'light') {
+        icon.innerHTML = '<path d="M12 4.5V3m6.364 2.136l1.06-1.06M19.5 12h1.5M18.364 18.364l1.06 1.06M12 19.5V21m-6.364-2.136-1.06 1.06M4.5 12H3m1.636-6.364-1.06-1.06M12 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12z"/>';
+    } else {
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"/>';
     }
-    body.light-mode .stApp {
-        background-color: #f5f5f5;
-        color: #111;
-    }
-    </style>
+}
 
-    <div class="theme-toggle">
-        <div class="toggle-switch" id="themeToggle">
-            <div class="toggle-circle"></div>
-        </div>
-    </div>
+window.onload = () => {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+}
+</script>
 
-    <script>
-    const toggle = document.getElementById("themeToggle");
-    const circle = toggle.querySelector(".toggle-circle");
-    const switchClass = toggle.classList;
+<style>
+.theme-toggle {
+    position: absolute;
+    top: 16px;
+    right: 60px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+}
 
-    toggle.addEventListener("click", () => {
-        if (switchClass.contains("light")) {
-            switchClass.remove("light");
-            document.body.classList.remove("light-mode");
-        } else {
-            switchClass.add("light");
-            document.body.classList.add("light-mode");
-        }
-    });
-    </script>
-    """,
-    unsafe_allow_html=True
-)
+.theme-toggle svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+    transition: all 0.3s ease;
+}
+
+html[data-theme='light'] .theme-toggle svg {
+    fill: #111;
+}
+
+html[data-theme='light'] {
+    --text-color: #000;
+    --bg-color: #fff;
+}
+
+html[data-theme='dark'] {
+    --text-color: #fff;
+    --bg-color: #0e0e11;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+</style>
+
+<button class="theme-toggle" onclick="toggleTheme()">
+    <svg viewBox="0 0 24 24">
+        <g id="theme-icon">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"/>
+        </g>
+    </svg>
+</button>
+""", unsafe_allow_html=True)
 
 # === SESSION STATE INIT ===
 if "script" not in st.session_state:
