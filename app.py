@@ -243,7 +243,14 @@ with col1:
     st.image("https://i.imgur.com/GouOmJ6.png", width=50)
 
 with col2:
-    st.markdown("## ScriptForge AI – Generatore Script Narrativi")
+    st.markdown(
+        """
+        <div style='display: flex; align-items: center; height: 100%;'>
+            <h2 style='margin: 0; font-family: Montserrat, sans-serif;'>ScriptForge AI – Generatore Script Narrativi</h2>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 
 
