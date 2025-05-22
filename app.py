@@ -28,13 +28,12 @@ st.set_page_config(page_title="ScriptForge AI", layout="centered")
 st.markdown("""
 <script>
 function toggleTheme() {
-    const root = document.documentElement;
-    const current = root.getAttribute('data-theme');
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
+    html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
 
-    // Cambia icona
     const icon = document.getElementById("theme-icon");
     if (next === 'light') {
         icon.innerHTML = '<path d="M12 4.5V3m6.364 2.136l1.06-1.06M19.5 12h1.5M18.364 18.364l1.06 1.06M12 19.5V21m-6.364-2.136-1.06 1.06M4.5 12H3m1.636-6.364-1.06-1.06M12 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12z"/>';
@@ -50,42 +49,39 @@ window.onload = () => {
 </script>
 
 <style>
+html[data-theme='dark'] {
+    --bg-color: #0e0e11;
+    --text-color: #ffffff;
+}
+
+html[data-theme='light'] {
+    --bg-color: #ffffff;
+    --text-color: #111111;
+}
+
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .theme-toggle {
     position: absolute;
-    top: 16px;
-    right: 60px;
+    top: 20px;
+    right: 70px;
     width: 40px;
     height: 40px;
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 10000;
+    z-index: 9999;
 }
 
 .theme-toggle svg {
     width: 28px;
     height: 28px;
-    fill: white;
+    fill: var(--text-color);
     transition: all 0.3s ease;
-}
-
-html[data-theme='light'] .theme-toggle svg {
-    fill: #111;
-}
-
-html[data-theme='light'] {
-    --text-color: #000;
-    --bg-color: #fff;
-}
-
-html[data-theme='dark'] {
-    --text-color: #fff;
-    --bg-color: #0e0e11;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
 }
 </style>
 
@@ -174,7 +170,7 @@ st.markdown(
     .header-title {{
     font-size: clamp(18px, 4vw, 26px);
     font-weight: bold;
-    color: black; !important
+    color: var(--text-color); !important
     font-family: 'Montserrat', sans-serif;
     line-height: 1.2;
     text-align: left;
@@ -199,7 +195,7 @@ st.markdown(
         font-weight: bold;
         font-size: clamp(16px, 4vw, 20px);
         margin-top: 1.5rem;
-        color: white;
+        color: var(--text-color);
         font-family: 'Montserrat', sans-serif;
         text-align: center;
     }}
