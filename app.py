@@ -14,6 +14,13 @@ from PIL import Image # type: ignore
 import base64
 from io import BytesIO
 
+def rileva_tema():
+    # Controllo hack basato sul colore di sfondo attuale
+    bg = st.get_option("theme.backgroundColor")
+    if bg is None or bg.lower() in ["#0e1117", "#000000", "#1e1e1e"]:
+        return "dark"
+    else:
+        return "light"
 
 # === CONFIG ===
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
@@ -226,12 +233,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# === HEADER ===
+tema_corrente = rileva_tema()
+colore_titolo = "white" if tema_corrente == "dark" else "black"
+
+# === TITOLO ===
 st.markdown(
-    """
-    <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px;">
-        <img src="https://i.imgur.com/GouOmJ6.png" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #888;">
-        <div style="font-size: clamp(20px, 5vw, 28px); font-weight: bold; color: white; font-family: 'Montserrat', sans-serif;">
+    f"""
+    <div class="header-container">
+        <img src="https://i.imgur.com/GouOmJ6.png" class="header-logo">
+        <div class="header-title" style="color: {colore_titolo};">
             ScriptForge AI – Generatore Script Narrativi
         </div>
     </div>
