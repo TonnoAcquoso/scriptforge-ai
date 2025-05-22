@@ -47,20 +47,29 @@ st.markdown(
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
 
     <style>
-    html, body, .main {{
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background-color: #0a0f1c; /* Blu/nero elegante */
+    body, html, .main, .block-container {{
+    background: linear-gradient(135deg, #0f1117, #1c1e26, #000000);
+    color: white;
     }}
 
-    .block-container {{
-        background-color: linear-gradient(135deg, #4fc3f7, #616161, #000000); /* Azzurro - Grigio - Nero */
-        padding: 2rem;
-        border-radius: 12px;
-        max-width: 700px;
-        margin: auto;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    input, textarea, select {{
+    background-color: #2c2f36 !important;
+    color: white !important;
+    border: 1px solid #444 !important;
+    border-radius: 8px;
+    }}
+
+    .stButton button {{
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    }}
+
+    .stButton button:hover {{
+    background-color: #666;
     }}
 
     .header-container {{
