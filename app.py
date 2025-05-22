@@ -130,93 +130,114 @@ st.markdown(
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
 
     <style>
-    body, html, .main, .block-container {{
-    background: linear-gradient(135deg, #0f1117, #1c1e26, #000000);
-    color: white;
+    :root {{
+        --bg-color: #0e0e11;
+        --text-color: #ffffff;
     }}
-
-    input, textarea, select {{
-    background-color: #2c2f36 !important;
-    color: white !important;
-    border: 1px solid #444 !important;
-    border-radius: 8px;
+    
+    html[data-theme='dark'] {{
+        --bg-color: #0e0e11;
+        --text-color: #ffffff;
     }}
-
-    .stButton button {{
-    background-color: #444;
-    color: white;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
+    html[data-theme='light'] {{
+        --bg-color: #ffffff;
+        --text-color: #111111;
     }}
-
-    .stButton button:hover {{
-    background-color: #666;
+    
+    body, html, .main {{
+        background-color: var(--bg-color) !important;
+        color: var(--text-color) !important;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }}
-
-    .header-container {{
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 12px !important;
-    margin-bottom: 20px !important;
-    text-align: left !important;
+    
+    /* Container principale */
+    .block-container {{
+        background: linear-gradient(135deg, #0e0e11, #1c1c1c);
+        background-color: var(--bg-color);
+        padding: 2rem;
+        border-radius: 12px;
+        max-width: 700px;
+        margin: auto;
     }}
-
-    .header-logo {{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    margin-right: 10px;
+    
+    /* Titoli */
+    .header-title, .section-title {{
+        color: var(--text-color);
+        font-family: 'Montserrat', sans-serif;
     }}
-
+    
     .header-title {{
-    font-size: clamp(18px, 4vw, 26px);
-    font-weight: bold;
-    color: var(--text-color); !important
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1.2;
-    text-align: left;
-    transition: color o.3s ease;
+        font-size: clamp(20px, 5vw, 28px);
+        font-weight: bold;
+        line-height: 1.2;
+        text-align: left;
+        transition: color 0.3s ease;
     }}
-
-    /* Dark Mode */
-    @media (prefers-color-scheme: dark) {{
-        .header-title {{
-            color: white; !important
-        }}
-    }}
-
-    /* Light Mode */
-    @media (prefers-color-scheme: light) {{
-        .header-title {{
-            color: black; !important
-        }}
-    }}
-
+    
     .section-title {{
         font-weight: bold;
         font-size: clamp(16px, 4vw, 20px);
         margin-top: 1.5rem;
-        color: var(--text-color);
-        font-family: 'Montserrat', sans-serif;
         text-align: center;
     }}
-
+    
+    /* Etichette input */
     label, .stSelectbox label, .stTextInput label {{
-        color: white;
+        color: var(--text-color);
         font-family: 'Montserrat', sans-serif;
         font-size: clamp(14px, 3.5vw, 16px);
         font-weight: 600;
     }}
-
+    
+    /* Input e Selectbox */
+    div[data-baseweb="input"], div[data-baseweb="select"] {{
+        background-color: rgba(255,255,255,0.05);
+        border: 1px solid #555;
+        border-radius: 8px;
+        color: var(--text-color);
+        transition: background-color 0.3s ease;
+    }}
+    
+    /* Pulsanti */
     .stButton button {{
-        display: block;
-        margin: 0 auto;
+        background-color: #333;
+        color: var(--text-color);
+        border-radius: 8px;
+        border: 1px solid #666;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        cursor: pointer;
+    }}
+    .stButton button:hover {{
+        background-color: #555;
+    }}
+    
+    /* Pulsante Tema (già incluso sopra) */
+    .theme-toggle {{
+        position: absolute;
+        top: 16px;
+        right: 65px;
+        width: 36px;
+        height: 36px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 9999;
+    }}
+    .theme-toggle svg {{
+        width: 26px;
+        height: 26px;
+        fill: var(--text-color);
+    }}
+    
+    
+    .header-logo {{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        margin-right: 10px;
     }}
 
     /* Forza la manina su tutti gli elementi cliccabili */
