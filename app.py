@@ -104,14 +104,14 @@ st.markdown(
     /* Dark Mode */
     @media (prefers-color-scheme: dark) {{
         .header-title {{
-            color: white;
+            color: white; !important
         }}
     }}
 
     /* Light Mode */
     @media (prefers-color-scheme: light) {{
         .header-title {{
-            color: black;
+            color: black; !important
         }}
     }}
 
