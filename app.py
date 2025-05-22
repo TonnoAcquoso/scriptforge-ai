@@ -25,6 +25,76 @@ def rileva_tema():
 # === CONFIG ===
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
 
+st.markdown(
+    """
+    <style>
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+    .toggle-switch {
+        width: 60px;
+        height: 30px;
+        background-color: #ccc;
+        border-radius: 30px;
+        position: relative;
+        cursor: pointer;
+    }
+    .toggle-circle {
+        width: 26px;
+        height: 26px;
+        background-color: #111;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        transition: all 0.3s ease;
+    }
+    .toggle-switch.light {
+        background-color: #f1f1f1;
+    }
+    .toggle-switch.light .toggle-circle {
+        left: 32px;
+        background-color: #fff;
+    }
+
+    body.light-mode {
+        background-color: #f5f5f5;
+        color: #111;
+    }
+    body.light-mode .stApp {
+        background-color: #f5f5f5;
+        color: #111;
+    }
+    </style>
+
+    <div class="theme-toggle">
+        <div class="toggle-switch" id="themeToggle">
+            <div class="toggle-circle"></div>
+        </div>
+    </div>
+
+    <script>
+    const toggle = document.getElementById("themeToggle");
+    const circle = toggle.querySelector(".toggle-circle");
+    const switchClass = toggle.classList;
+
+    toggle.addEventListener("click", () => {
+        if (switchClass.contains("light")) {
+            switchClass.remove("light");
+            document.body.classList.remove("light-mode");
+        } else {
+            switchClass.add("light");
+            document.body.classList.add("light-mode");
+        }
+    });
+    </script>
+    """,
+    unsafe_allow_html=True
+)
+
 # === SESSION STATE INIT ===
 if "script" not in st.session_state:
     st.session_state["script"] = ""
