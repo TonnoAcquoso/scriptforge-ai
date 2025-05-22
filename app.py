@@ -31,6 +31,34 @@ def rileva_tema():
 
 # === CONFIG ===
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
+st.markdown("""
+<style>
+.theme-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 9999;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+}
+</style>
+
+<script>
+const toggleTheme = () => {
+    const root = document.documentElement;
+    const isDark = root.getAttribute("data-theme") === "dark";
+    root.setAttribute("data-theme", isDark ? "light" : "dark");
+    const icon = document.getElementById("theme-icon");
+    icon.textContent = isDark ? "☀️" : "🌙";
+};
+</script>
+
+<button class="theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span>
+</button>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
