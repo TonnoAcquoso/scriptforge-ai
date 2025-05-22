@@ -94,7 +94,7 @@ st.markdown(
     .header-title {{
     font-size: clamp(18px, 4vw, 26px);
     font-weight: bold;
-    color: white;
+    color: var(--text-color);
     font-family: 'Montserrat', sans-serif;
     line-height: 1.2;
     text-align: left;
@@ -104,14 +104,14 @@ st.markdown(
     /* Dark Mode */
     @media (prefers-color-scheme: dark) {{
         .header-title {{
-            color: white; !important
+            color: white; 
         }}
     }}
 
     /* Light Mode */
     @media (prefers-color-scheme: light) {{
         .header-title {{
-            color: black; !important
+            color: black; 
         }}
     }}
 
