@@ -237,17 +237,14 @@ tema_corrente = rileva_tema()
 colore_titolo = "white" if tema_corrente == "dark" else "black"
 
 # === TITOLO ===
-st.markdown(
-    f"""
-    <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px;">
-        <img src="https://i.imgur.com/GouOmJ6.png" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #888;">
-        <div style="font-size: clamp(20px, 5vw, 28px); font-weight: bold; color: {colore_titolo}; font-family: 'Montserrat', sans-serif;">
-            ScriptForge AI – Generatore Script Narrativi
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+col1, col2 = st.columns([1, 8])
+
+with col1:
+    st.image("https://i.imgur.com/GouOmJ6.png", width=50)
+
+with col2:
+    st.markdown("## ScriptForge AI – Generatore Script Narrativi")
+
 
 
 # === PARAMETRI ===
