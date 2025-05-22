@@ -26,51 +26,31 @@ def rileva_tema():
 st.set_page_config(page_title="ScriptForge AI", layout="centered")
 
 st.markdown("""
-<script>
-function toggleTheme() {
-    const html = document.documentElement;
-    const current = html.getAttribute('data-theme') || 'dark';
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-
-    const icon = document.getElementById("theme-icon");
-    if (next === 'light') {
-        icon.innerHTML = '<path d="M12 4.5V3m6.364 2.136l1.06-1.06M19.5 12h1.5M18.364 18.364l1.06 1.06M12 19.5V21m-6.364-2.136-1.06 1.06M4.5 12H3m1.636-6.364-1.06-1.06M12 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12z"/>';
-    } else {
-        icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"/>';
-    }
-}
-
-window.onload = () => {
-    const saved = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', saved);
-}
-</script>
-
 <style>
+/* Tema variabili */
 html[data-theme='dark'] {
     --bg-color: #0e0e11;
     --text-color: #ffffff;
 }
-
 html[data-theme='light'] {
     --bg-color: #ffffff;
     --text-color: #111111;
 }
 
+/* Applica i colori dinamici */
 body {
     background-color: var(--bg-color) !important;
     color: var(--text-color) !important;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Pulsante toggle */
 .theme-toggle {
     position: absolute;
-    top: 20px;
-    right: 70px;
-    width: 40px;
-    height: 40px;
+    top: 16px;
+    right: 65px;
+    width: 36px;
+    height: 36px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -78,20 +58,47 @@ body {
 }
 
 .theme-toggle svg {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     fill: var(--text-color);
-    transition: all 0.3s ease;
 }
 </style>
 
 <button class="theme-toggle" onclick="toggleTheme()">
     <svg viewBox="0 0 24 24">
         <g id="theme-icon">
+            <!-- Default: luna -->
             <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"/>
         </g>
     </svg>
 </button>
+
+<script>
+function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute("data-theme") || "dark";
+    const next = current === "dark" ? "light" : "dark";
+    html.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+    updateIcon(next);
+}
+
+function updateIcon(theme) {
+    const icon = document.getElementById("theme-icon");
+    if (theme === "light") {
+        icon.innerHTML = `<path d="M12 4.5V3m6.364 2.136l1.06-1.06M19.5 12h1.5M18.364 18.364l1.06 1.06M12 19.5V21m-6.364-2.136-1.06 1.06M4.5 12H3m1.636-6.364-1.06-1.06M12 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12z"/>`;
+    } else {
+        icon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"/>`;
+    }
+}
+
+// Applica il tema salvato all’avvio
+window.onload = () => {
+    const saved = localStorage.getItem("theme") || "dark";
+    document.documentElement.setAttribute("data-theme", saved);
+    updateIcon(saved);
+}
+</script>
 """, unsafe_allow_html=True)
 
 # === SESSION STATE INIT ===
