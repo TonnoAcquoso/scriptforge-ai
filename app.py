@@ -98,6 +98,21 @@ st.markdown(
     font-family: 'Montserrat', sans-serif;
     line-height: 1.2;
     text-align: left;
+    transition: color o.3s ease;
+    }}
+
+    /* Dark Mode */
+    @media (prefers-color-scheme: dark) {{
+        .header-title {{
+            color: white;
+        }}
+    }}
+
+    /* Light Mode */
+    @media (prefers-color-scheme: light) {{
+        .header-title {{
+            color: black;
+        }}
     }}
 
     .section-title {{
