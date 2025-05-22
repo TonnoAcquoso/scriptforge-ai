@@ -13,6 +13,13 @@ from openai import OpenAI  # type: ignore
 from PIL import Image # type: ignore
 import base64
 from io import BytesIO
+import os
+import shutil
+
+# Sposta il file nella posizione che Streamlit si aspetta
+if os.path.exists("secrets.toml"):
+    os.makedirs(".streamlit", exist_ok=True)
+    shutil.copy("secrets.toml", ".streamlit/secrets.toml")
 
 def rileva_tema():
     # Controllo hack basato sul colore di sfondo attuale
